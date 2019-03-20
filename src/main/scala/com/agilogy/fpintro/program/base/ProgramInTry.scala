@@ -14,6 +14,10 @@ class ProgramInTry {
 
   }
 
-  def program(repo: UserRepository, userId: UserId): Try[Unit] =
-    repo.getUser(userId).flatMap(u => Try(User(u.name, u.counter + 1))).flatMap(u => repo.saveUser(u))
+  def program(repo: UserRepository, userId: UserId): Try[Unit] = {
+    val u0 = repo.getUser(userId)
+    val u1 = User(u0.name, u0.counter + 1)
+    repo.saveUser(u1)
+  }
+
 }

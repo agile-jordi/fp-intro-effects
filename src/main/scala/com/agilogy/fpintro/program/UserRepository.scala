@@ -4,10 +4,10 @@ import com.agilogy.fpintro.{User, UserId}
 
 import scala.language.higherKinds
 
-// We parametrize the repository with some "container" type C that will "contain" the result like Result or Async do
+trait UserRepository {
 
-trait UserRepository[C[_]] {
-  def saveUser(u: User): C[Unit]
+  def saveUser(u: User): AsyncOrResult[Unit]
 
-  def getUser(id: UserId): C[User]
+  def getUser(id: UserId): AsyncOrResult[User]
+
 }

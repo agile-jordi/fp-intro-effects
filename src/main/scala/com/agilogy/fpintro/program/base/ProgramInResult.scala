@@ -13,7 +13,10 @@ object ProgramInResult {
 
   }
 
-  def program(repo: UserRepository, userId: UserId): Result[Unit] =
-    repo.getUser(userId).ifOk(u => Result.result(User(u.name, u.counter + 1))).ifOk(u => repo.saveUser(u))
+  def program(repo: UserRepository, userId: UserId): Result[Unit] = {
+    val u0 = repo.getUser(userId)
+    val u1 = User(u0.name, u0.counter + 1)
+    repo.saveUser(u1)
+  }
 
 }

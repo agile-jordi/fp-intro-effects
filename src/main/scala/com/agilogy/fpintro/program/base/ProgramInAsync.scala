@@ -3,7 +3,7 @@ package com.agilogy.fpintro.program.base
 import com.agilogy.fpintro.effects.async.Async
 import com.agilogy.fpintro.{User, UserId}
 
-class ProgramInAsync {
+object ProgramInAsync {
 
   trait UserRepository {
 
@@ -13,7 +13,10 @@ class ProgramInAsync {
 
   }
 
-  def program(repo: UserRepository, userId: UserId): Async[Unit] =
-    repo.getUser(userId).andThen(u => Async.async(User(u.name, u.counter + 1))).andThen(u => repo.saveUser(u))
+  def program(repo: UserRepository, userId: UserId): Async[Unit] = {
+    val u0 = repo.getUser(userId)
+    val u1 = User(u0.name, u0.counter + 1)
+    repo.saveUser(u1)
+  }
 
 }

@@ -13,9 +13,9 @@ object Program {
   }
 
   def program(repo: UserRepository, userId: UserId): Unit = {
-    val user     = repo.getUser(userId)
-    val incdUser = User(user.name, user.counter + 1)
-    repo.saveUser(incdUser)
+    val u0 = repo.getUser(userId)
+    val u1 = User(u0.name, u0.counter + 1)
+    repo.saveUser(u1)
   }
 
 }

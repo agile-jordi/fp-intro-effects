@@ -2,18 +2,12 @@ package com.agilogy.fpintro.program.monad
 
 import com.agilogy.fpintro.effects.async.Async
 import com.agilogy.fpintro.effects.monad.Monad
+import com.agilogy.fpintro.program.UserRepository
 import com.agilogy.fpintro.{User, UserId}
 
 import scala.language.higherKinds
 
 object ProgramInMonad {
-
-  // The very same repository
-
-  trait UserRepository[F[_]] {
-    def saveUser(u: User): F[Unit]
-    def getUser(id: UserId): F[User]
-  }
 
   // Same program with some syntax sugar:
   // `for` language construct replaces `flatMap`s and `map`s

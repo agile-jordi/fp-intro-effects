@@ -16,6 +16,9 @@ class ProgramInFuture {
 
   import scala.concurrent.ExecutionContext.Implicits.global
 
-  def program(repo: UserRepository, userId: UserId): Future[Unit] =
-    repo.getUser(userId).flatMap(u => Future(User(u.name, u.counter + 1))).flatMap(u => repo.saveUser(u))
+  def program(repo: UserRepository, userId: UserId): Future[Unit] = {
+    val u0 = repo.getUser(userId)
+    val u1 = User(u0.name, u0.counter + 1)
+    repo.saveUser(u1)
+  }
 }
