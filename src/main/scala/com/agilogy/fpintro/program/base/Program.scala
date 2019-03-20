@@ -1,12 +1,15 @@
-package com.agilogy.fpintro.effects.base
+package com.agilogy.fpintro.program.base
 
-import com.agilogy.fpintro.effects.{User, UserId}
+import com.agilogy.fpintro.{User, UserId}
 
 object Program {
 
   trait UserRepository {
+
     def saveUser(u: User): Unit
+
     def getUser(id: UserId): User
+
   }
 
   def program(repo: UserRepository, userId: UserId): Unit = {
